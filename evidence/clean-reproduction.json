@@ -1,0 +1,155 @@
+{
+  "schema_version": 2,
+  "base_commit": "9da2f90b882ef3e9831c642f78942c0f07bc2a67",
+  "overlay": {
+    "sha256": "eb0ac806d84c150442e3eb5dda151775d2345f71f173e9540de7265fb1af7fd1",
+    "paths": [
+      "README.md",
+      "UX-CONTRACT.md",
+      "evidence/live-verification.json",
+      "evidence/verification-summary.json",
+      "web/index.html",
+      "PROCESS.md"
+    ],
+    "scope": "documentation, evidence summaries and one UI status sentence only"
+  },
+  "independent_checkout": true,
+  "old_var_or_task_database_copied": false,
+  "pre_test_var_absent": true,
+  "environment": {
+    "python": "Python 3.9.6",
+    "node": "v26.5.0",
+    "git": "git version 2.54.0 (Apple Git-157)",
+    "codex": "codex-cli 0.160.0"
+  },
+  "existing_auth_available": true,
+  "installations": 0,
+  "verification_completed_at": {
+    "beijing": "2026-10-03T21:36:55.367802+08:00",
+    "utc": "2026-10-03T13:36:55.367802+00:00"
+  },
+  "checks": {
+    "backend_http": 59,
+    "offline_contract": 22,
+    "fixed_http_assertions": 8,
+    "original_baseline": {
+      "passed": 9,
+      "failed": 1,
+      "exit_code": 1
+    },
+    "syntax": "passed",
+    "fresh_loopback_database_tasks": 0
+  },
+  "real_model": {
+    "new_calls": 1,
+    "exit_code": 0,
+    "source_equals_pinned_original_fixture": true,
+    "predefined_patch_or_old_response_supplied": false,
+    "prompt_sha256": "86eb489f676216b6aa221e30af82db7231778b4a50197160dbb075c2b3365f29",
+    "candidate_patch_sha256": "39b7c0a69542ce51c8751fb0c262a5ead5e04868ce762e1138bd8de03e8d6a4d",
+    "base_manifest_sha256": "ec7a7a159fea2e6aeac4dd39b503c9fda905be46dd4669ac6f6ed9fadc3b0ab3",
+    "state": "passed",
+    "target_runs": 1,
+    "target_commands": 4,
+    "needs_new_candidate_approval": false,
+    "candidate_generated_at_utc": "2026-10-03T13:38:41.600917+00:00",
+    "approved_revision": 2,
+    "final_revision": 4,
+    "plan_sha256": "9038b9bdedc0ff77c5bc722c863c622dd498b63ce27bb08ad63e77bad4030916",
+    "candidate_id": "8193680d5bf1892223215037b6def8787aa33b28283cef29502b036e11c3c3f3",
+    "new_calls_during_approval": 0
+  },
+  "distinction": "This clean run independently completed one real model call and one separately approved target run. Existing first-run and Rinx acceptance remain separate historical evidence.",
+  "media_preparation": {
+    "local_screenshot_candidates": 4,
+    "uploaded": false,
+    "new_clean_ui_no_decision_submitted": true,
+    "primary_review_candidates": 2,
+    "video_recorded": true,
+    "deliverable": "130.72s actual Rinx native result-review recording plus four screenshot candidates",
+    "video_sha256": "770f8164d9be8546324d191bb584c16d62aecd83a1e2716221a0222f2fa6004c",
+    "video_scope": "earlier completed native task; separate from this clean reproduction",
+    "new_model_or_target_runs_for_recording": 0,
+    "private_library_video_saved": true,
+    "publicly_published": false
+  },
+  "approved_execution": {
+    "source_commit": "9da2f90b882ef3e9831c642f78942c0f07bc2a67",
+    "approved_revision": 2,
+    "final_revision": 4,
+    "state": "passed",
+    "run_count": 1,
+    "model_calls": 1,
+    "exit_codes": [
+      1,
+      0,
+      0,
+      0
+    ],
+    "baseline": {
+      "passed": 9,
+      "failed": 1
+    },
+    "fixed": {
+      "passed": 10,
+      "failed": 0
+    },
+    "repeat_approval_identical": true,
+    "tests_unchanged": true,
+    "original_fixture_unchanged": true,
+    "completed_at_utc": "2026-10-03T14:04:00.427754+00:00",
+    "human_approval": "Explicit approval for this exact new candidate, checked against task, revision, plan, base and patch before applying."
+  },
+  "browser_after_approval": {
+    "scenarios": [
+      "live passed UI reports one actual target run and one model call",
+      "completed candidate has no approval control",
+      "task reload causes no rerun or evidence change",
+      "displayed patch matches approved one-line change",
+      "original fixture actually loses checked state after reload",
+      "approved isolated fixture preserves checked state after reload",
+      "approved fixture retains checked state after close and reopen",
+      "390px result page has no horizontal overflow",
+      "no JavaScript error and backend document unchanged"
+    ],
+    "console_errors": [],
+    "new_model_calls": 0,
+    "new_target_runs": 0,
+    "no_decisions_submitted": true,
+    "passed": 9,
+    "failed": 0,
+    "completed_at_utc": "2026-10-03T14:05:41.370949+00:00"
+  },
+  "evidence_sources": [
+    {
+      "alias": "exact-new-human-approval",
+      "sha256": "6db5d8960105f95cdbee3416d7b4a0f68eea90f88e1e8a8932a4ca4ce0f6a8ac",
+      "bytes": 680,
+      "availability": "private local original retained outside repository"
+    },
+    {
+      "alias": "approved-result",
+      "sha256": "d35282342235dd04dd6242f6b211e7e9a4b773e45015a1b69a764e9d53cfb7df",
+      "bytes": 16433,
+      "availability": "private local original retained outside repository"
+    },
+    {
+      "alias": "approval-replay",
+      "sha256": "d35282342235dd04dd6242f6b211e7e9a4b773e45015a1b69a764e9d53cfb7df",
+      "bytes": 16433,
+      "availability": "private local original retained outside repository"
+    },
+    {
+      "alias": "approved-verification",
+      "sha256": "70b38c7ba4a3d5eeb5485dce8092493d7e19bdd8ac56b272ba4c15e04a6036f6",
+      "bytes": 561,
+      "availability": "private local original retained outside repository"
+    },
+    {
+      "alias": "passed-browser-checks",
+      "sha256": "94f1fe08e29d5dd20d1f67024af004cc9976e42444d09e6ac42137f0721f443a",
+      "bytes": 765,
+      "availability": "private local original retained outside repository"
+    }
+  ]
+}

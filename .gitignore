@@ -11,3 +11,4 @@ evidence/*
 !evidence/verification-summary.json
 !evidence/live-verification.json
 !evidence/live-candidate.patch
+!evidence/clean-reproduction.json

@@ -1,8 +1,8 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "summary_date": "2026-10-03",
   "base_commit": "2c2b51ce8c7f1a8bfff667fb9dac9fbc525928ca",
-  "status": "real_codex_candidate_human_approved_applied_once_and_verified",
+  "status": "real_model_human_approval_fixed_tests_and_same_mac_dual_account_native_acceptance_passed",
   "provenance": "Sanitized summary checked against locally retained raw model, approval, process and browser evidence; raw logs, identities, local task identifiers, machine paths and screenshots are not distributed.",
   "modes": {
     "fixed": "Pre-authored patch replay; no runtime model call",
@@ -171,10 +171,9 @@
     }
   },
   "scope_limits": [
-    "Only the Todo persistence fixture is supported.",
-    "Node permission mode and isolated directories are not a container-grade boundary for arbitrary hostile code.",
-    "Approval endpoint assumes one trusted local human; remote authentication and tamper-proof auditing are not implemented.",
-    "Rinx embedded interaction and Matrix delivery are not validated by this evidence.",
+    "Only the Todo persistence fixture is supported; candidate application requires its own explicit approval.",
+    "The native acceptance covers a new card between two accounts on one Mac. The old card still lacks its room key; the cause is unknown, and cross-device reachability is untested.",
+    "Local execution assumes one trusted operator; directory isolation and Node permissions are not a container boundary for arbitrary code.",
     "No automatic repair loop or public application deployment is claimed."
   ],
   "runtime_source_sha256": {
@@ -184,5 +183,72 @@
     "web/index.html": "54e9ef59262ea5efe6396e63e5e213170cc0892ddc11623c810bebb72260e62d",
     "web/style.css": "da453b7d6d8162fbe4ec15a7f9d0c3556447814c953c2bce9ce2fa490ac54933",
     "tools/live_probe.py": "8b961052f5213160627ef0290130b8cbbcf80c8a2de1471e9620ff6c6af46f32"
+  },
+  "summary_updated_at": {
+    "beijing": "2026-10-03T21:33:55+08:00",
+    "utc": "2026-10-03T13:33:55+00:00"
+  },
+  "verification_commit": "9da2f90b882ef3e9831c642f78942c0f07bc2a67",
+  "verification_phase": "existing successful execution and native acceptance; separate clean reproduction follows",
+  "branch_state": {
+    "live-codex-todo": "9da2f90b882ef3e9831c642f78942c0f07bc2a67",
+    "main": "2c2b51ce8c7f1a8bfff667fb9dac9fbc525928ca",
+    "main_mode": "fixed patch replay"
+  },
+  "evidence_sources": [
+    {
+      "alias": "codex-approved-result",
+      "sha256": "c6f1a3dda1471a08d315e69284796198ec16796bfd3f0bc665f5ca8778b39113",
+      "bytes": 16524
+    },
+    {
+      "alias": "explicit-human-approval",
+      "sha256": "2b2e5b0fcb5027857dbde6905d9338eef77789e360b5d092e59ce7ecc2b7266e",
+      "bytes": 584
+    },
+    {
+      "alias": "rinx-dual-account-result",
+      "sha256": "676124ba2be9d052099d07b95e65e3916e876d31646853a1617bfe46da984648",
+      "bytes": 4166
+    },
+    {
+      "alias": "rinx-fixture-after-reopen-image",
+      "sha256": "2dd835f365d045541d90b5204a80b47fbe15bcc0f11a41a0edf4fcfb40595a8b",
+      "bytes": 174249
+    }
+  ],
+  "native_acceptance": {
+    "completed_at": {
+      "beijing": "2026-10-03T20:55:45.455289+08:00",
+      "utc": "2026-10-03T12:55:45.455289+00:00"
+    },
+    "ragnarok_commit": "9da2f90b882ef3e9831c642f78942c0f07bc2a67",
+    "rinx_commit": "c515e5fc9b6dc22e67f7d551b09fdd793ec685a1",
+    "setup": "two existing accounts and loopback service on one Mac",
+    "new_card": {
+      "decrypted_by_recipient": true,
+      "opened_in_native_wkwebview": true,
+      "checked_state_survived_fixture_reload": true,
+      "native_back_and_close": true,
+      "same_card_reopened_with_checked_state": true
+    },
+    "passed_checks": 11,
+    "total_cards_sent": 2,
+    "card_count_detail": "original card plus one explicitly authorized reproduction card",
+    "live_task_after_acceptance": {
+      "mode": "live",
+      "state": "passed",
+      "run_count": 1,
+      "additional_execution": 0
+    },
+    "old_card": {
+      "status": "missing room key; unable to decrypt",
+      "cause": "not established"
+    },
+    "cross_device": "not tested",
+    "source_aliases": [
+      "rinx-dual-account-result",
+      "rinx-fixture-after-reopen-image"
+    ]
   }
 }

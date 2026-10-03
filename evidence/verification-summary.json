@@ -182,5 +182,6 @@
       "fixture/store.test.mjs": "19281d5f7ccbeed81d5abe2a637bc567134ae02200161245ef6a71b49c034042",
       "patches/todo-persistence.patch": "39b7c0a69542ce51c8751fb0c262a5ead5e04868ce762e1138bd8de03e8d6a4d"
     }
-  }
+  },
+  "record_scope": "Historical fixed-demo release at commit 2c2b51ce8c7f1a8bfff667fb9dac9fbc525928ca; current live and native results are in live-verification.json"
 }
