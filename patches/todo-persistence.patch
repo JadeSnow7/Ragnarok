@@ -1,0 +1,11 @@
+--- a/fixture/store.mjs
++++ b/fixture/store.mjs
+@@ -40,7 +40,7 @@
+       const todo = todos.find(item => item.id === id);
+       if (!todo) return false;
+       todo.completed = !todo.completed;
+-      // Known baseline bug: the in-memory toggle is not saved before reload.
++      persist();
+       return true;
+     },
+     remove(id) {

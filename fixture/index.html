@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Todo reload fixture</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, sans-serif; color: #162b26; background: #f8faf8; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; }
+    main { max-width: 620px; margin: auto; }
+    .eyebrow { color: #547166; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    h1 { margin: 8px 0; font-size: 24px; letter-spacing: -.03em; }
+    .hint { color: #66776e; font-size: 13px; line-height: 1.6; margin: 0 0 20px; }
+    form { display: flex; gap: 8px; }
+    input[type="text"] { min-width: 0; flex: 1; padding: 11px 12px; border: 1px solid #ccd7d0; border-radius: 8px; font: inherit; background: white; }
+    button { padding: 10px 13px; border: 1px solid #ccd7d0; border-radius: 8px; font: inherit; font-size: 13px; background: white; color: inherit; cursor: pointer; }
+    button:hover { background: #edf2ef; }
+    form button { background: #234c3f; color: white; border-color: #234c3f; }
+    form button:hover { background: #17382d; }
+    :focus-visible { outline: 3px solid #6c9f8b; outline-offset: 2px; }
+    ul { list-style: none; padding: 0; margin: 16px 0; }
+    li { display: flex; align-items: center; gap: 8px; padding: 12px 0; border-bottom: 1px solid #e1e8e2; }
+    li label { display: flex; gap: 10px; align-items: center; flex: 1; min-width: 0; }
+    li input { width: 18px; height: 18px; accent-color: #234c3f; flex: 0 0 auto; }
+    li span { overflow-wrap: anywhere; }
+    li input:checked + span { text-decoration: line-through; color: #7a8a80; }
+    li button { padding: 5px 8px; font-size: 11px; color: #67786d; }
+    #empty { color: #7a8a80; padding: 18px 0; font-size: 13px; }
+    footer { border-top: 1px solid #e1e8e2; padding-top: 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    #count { color: #67786d; font-size: 12px; }
+    #status { font-size: 12px; color: #886038; line-height: 1.5; min-height: 18px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">Browser fixture · local storage</div>
+    <h1>A checkbox should remember</h1>
+    <p class="hint">Add a task, check its box, then reload this fixture. The checkbox should stay checked.</p>
+    <form id="add-form">
+      <label class="sr-only" for="new-todo">New task</label>
+      <input id="new-todo" name="title" type="text" placeholder="Prepare the demo" required autocomplete="off" maxlength="200">
+      <button type="submit">Add task</button>
+    </form>
+    <ul id="todos" aria-label="Tasks"></ul>
+    <p id="empty">No tasks yet. Add one to reproduce the reload issue.</p>
+    <footer>
+      <span id="count" aria-live="polite">0 tasks</span>
+      <button id="reload" type="button">Reload fixture ↻</button>
+    </footer>
+    <p id="status" role="status" aria-live="polite"></p>
+  </main>
+  <script type="module" src="./app.mjs"></script>
+</body>
+</html>

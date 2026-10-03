@@ -1,0 +1,18 @@
+{
+  "name": "ragnarok-handoff-proof",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local-only reviewed-patch handoff proof; no live model runner",
+  "scripts": {
+    "start": "python3 app.py",
+    "test": "python3 -m unittest discover -s tests -p 'test_*.py' -v",
+    "demo": "python3 tests/run_demo.py",
+    "check": "node --check web/app.js && python3 -m py_compile app.py",
+    "test:browser": "python3 tests/browser_smoke.py"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "Apache-2.0"
+}

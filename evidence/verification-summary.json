@@ -1,0 +1,186 @@
+{
+  "project": "Ragnarok / Web Studio Handoff",
+  "summary_date": "2026-10-03",
+  "status": "release_backend_http_and_offline_contract_verified_native_embedding_unverified",
+  "provenance": "Sanitized consolidation of historical reports and current release checks; original private artifacts are not distributed. Dates and verification methods are separated below.",
+  "proof_kind": "Pre-authored fixed patch replay with real subprocess verification",
+  "live_model": false,
+  "automatic_repair_loop": false,
+  "history": [
+    {
+      "source_report": "original verification-summary.json",
+      "recorded_at": null,
+      "date_note": "Original cloud report has no timestamp; it precedes Mac verification on 2026-10-02.",
+      "environment": {
+        "python": "3.12.14",
+        "node": "v24.19.0",
+        "git": "git version 2.52.0"
+      },
+      "passed": {
+        "backend_http_tests": 39,
+        "rinx_card_contract_offline_tests": 22,
+        "http_demo_assertions": 8,
+        "baseline": {
+          "pass": 9,
+          "fail": 1,
+          "exit_code": 1,
+          "expected_failure": true
+        },
+        "patched_regression": {
+          "pass": 10,
+          "fail": 0,
+          "exit_code": 0
+        },
+        "syntax_checks": true,
+        "static_ui_audit": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "fixture_test_sha256": "19281d5f7ccbeed81d5abe2a637bc567134ae02200161245ef6a71b49c034042"
+      },
+      "historical_blocker": "Cloud browser testing was blocked by runtime socket / loopback restrictions. Later Mac manual browser checks are recorded separately."
+    },
+    {
+      "source_report": "mac-browser-report.json",
+      "recorded_at": "2026-10-02T07:03:03.507811+00:00",
+      "browser": "Microsoft Edge on macOS",
+      "method": "Manual CUA browser interaction and on-disk evidence checks; Playwright script was not run",
+      "ui_checks": {
+        "approval_required_zero_commands_before_decision": "passed",
+        "double_click_approval_runs_once": "passed",
+        "actual_baseline_9_pass_1_fail": "passed",
+        "actual_unchanged_tests_after_patch_10_pass": "passed",
+        "task_reload_does_not_rerun": "passed",
+        "fixed_checkbox_survives_reload": "passed",
+        "baseline_checkbox_loses_state_on_reload": "passed",
+        "reject_zero_runs_no_execution_directory": "passed",
+        "visible_command_output": "passed",
+        "json_evidence_opened_via_ui_link": "passed",
+        "console_error_log_empty_for_handoff_tab": "passed"
+      },
+      "passed_checks": 11,
+      "not_run": [
+        "390px viewport",
+        "network-failure retry UI",
+        "full keyboard accessibility coverage",
+        "Rinx WKWebView embedding",
+        "Matrix messaging"
+      ]
+    },
+    {
+      "source_report": "rinx-build-status.json",
+      "recorded_at": "2026-10-02T07:04:02.511530+00:00",
+      "upstream": "https://github.com/hagency-org/Rinx",
+      "revision": "c515e5fc9b6dc22e67f7d551b09fdd793ec685a1",
+      "build_exit_code": 0,
+      "note": "Native build success is separate from embedding verification."
+    },
+    {
+      "source_report": "rinx-post-login-check.json",
+      "recorded_at": "2026-10-02T11:00:30.175805+00:00",
+      "native_running": true,
+      "login_confirmed_visually": true,
+      "wkwebview_embedding": "not_verified",
+      "card_send_receive": "not_verified",
+      "messages_sent": 0,
+      "blocking_condition": "The observed room did not provide a writable composer or mini-app preview control."
+    }
+  ],
+  "current_source_boundary": {
+    "browser_checks_predate_same_context_link_changes": true,
+    "current_browser_ui_rerun": false,
+    "current_rinx_ui_rerun": false,
+    "note": "Same-context links and source-informed Back/Reload notes were added after recorded browser checks; unsupported native-success copy was corrected for publication."
+  },
+  "not_completed": [
+    "Live model or external coding CLI execution",
+    "Automatic repair loop",
+    "Rinx WKWebView mini-app verification",
+    "Real Matrix card send/receive and cross-device verification",
+    "Public app deployment",
+    "Demo video",
+    "Submission acceptance"
+  ],
+  "isolation": "Per-task directories, fixed argv, reviewed-byte binding; not an OS security sandbox",
+  "release_checks": {
+    "checked_at": "2026-10-03T08:25:20.103074+00:00",
+    "environment": {
+      "python": "3.14.6",
+      "node": "v26.5.0",
+      "git": "2.54.0 (Apple Git-157)",
+      "platform": "macOS"
+    },
+    "unittest": {
+      "command": "python3 -m unittest discover -s tests -p 'test_*.py' -v",
+      "passed": 39,
+      "failed": 0,
+      "skipped": 0,
+      "exit_code": 0
+    },
+    "offline_card_contract": {
+      "command": "node --test rinx-contract/card-contract.test.mjs",
+      "passed": 22,
+      "failed": 0,
+      "exit_code": 0,
+      "native_rinx_delivery": false
+    },
+    "javascript_syntax": {
+      "command": "node --check web/app.js",
+      "exit_code": 0
+    },
+    "http_demo": {
+      "status": "passed",
+      "health": {
+        "ok": true,
+        "executor": "reviewed-patch-replay",
+        "live_model": false,
+        "rinx_host_integration": false
+      },
+      "run_count": 1,
+      "checks": [
+        {
+          "name": "baseline",
+          "exit_code": 1
+        },
+        {
+          "name": "patch-check",
+          "exit_code": 0
+        },
+        {
+          "name": "patch-apply",
+          "exit_code": 0
+        },
+        {
+          "name": "verification",
+          "exit_code": 0
+        }
+      ],
+      "assertions": [
+        "HTTP health",
+        "create waits for approval",
+        "create idempotency",
+        "real expected baseline failure",
+        "real approved patch application",
+        "unchanged regression suite passes",
+        "decision idempotency prevents rerun",
+        "reject causes no execution or workspace"
+      ],
+      "browser_verification": "not run in this script"
+    },
+    "test_portability_fix": "Initial Mac run exposed an untriggered fault injection because temporary-directory aliases differed from resolved paths. Test setup now resolves the root path; injection and assertions are unchanged. The complete 39-test suite then passed.",
+    "browser_ui_rerun": false,
+    "rinx_native_ui_rerun": false,
+    "source_sha256": {
+      "app.py": "d4edbeef2236975542089eb5ac5d9ddbf756796c23d60e66136bfaa4cc789d47",
+      "tests/test_runner.py": "eebea8cbbbcce487a62d947c828d7a1da2513e1f4ee2e417f3d759ec474df5a8",
+      "tests/run_demo.py": "6a7653ec81679395e5c8e958648f181942fdf374993a17120ed4c5ca059f2854",
+      "rinx-contract/card-contract.mjs": "f45ad5e8ea4d930674ed980ece3c1ebffffce1654cac545fdc991c8582a87206",
+      "rinx-contract/card-contract.test.mjs": "e6fa5f53721a8b70a4decd5b423305f423372ff96ad1a068e3b2a09207ec4de7",
+      "web/index.html": "5baaaff14d6351f3553a09bdfd26d0a992e5c112579aee80453fd2ec38b1b61c",
+      "web/app.js": "54b0ee450ec958386a4c25f580eb7dd4f8ef1c008515f46c8fd944739b6cadc0",
+      "fixture/store.mjs": "5f5fd17fe4f7b05752b8fbcf974e176dcd268101161a20135ac4564ebfc39d76",
+      "fixture/store.test.mjs": "19281d5f7ccbeed81d5abe2a637bc567134ae02200161245ef6a71b49c034042",
+      "patches/todo-persistence.patch": "39b7c0a69542ce51c8751fb0c262a5ead5e04868ce762e1138bd8de03e8d6a4d"
+    }
+  }
+}

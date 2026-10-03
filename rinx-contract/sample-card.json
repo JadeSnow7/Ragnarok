@@ -1,0 +1,9 @@
+{
+  "msgtype": "rs.robius.robrix.mini_app",
+  "body": "[Mini app] Web Studio Handoff\nhttp://127.0.0.1:8765/",
+  "mini_app": {
+    "version": 1,
+    "title": "Web Studio Handoff",
+    "url": "http://127.0.0.1:8765/"
+  }
+}

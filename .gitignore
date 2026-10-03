@@ -1,0 +1,11 @@
+var/
+__pycache__/
+*.pyc
+.DS_Store
+.env
+.env.*
+!.env.example
+node_modules/
+# Local runs may contain task identifiers, output paths and screenshots.
+evidence/*
+!evidence/verification-summary.json
