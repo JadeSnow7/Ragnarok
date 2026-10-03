@@ -9,3 +9,5 @@ node_modules/
 # Local runs may contain task identifiers, output paths and screenshots.
 evidence/*
 !evidence/verification-summary.json
+!evidence/live-verification.json
+!evidence/live-candidate.patch

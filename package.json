@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Local-only reviewed-patch handoff proof; no live model runner",
+  "description": "Local bounded fixed replay and opt-in Codex CLI candidate review",
   "scripts": {
     "start": "python3 app.py",
     "test": "python3 -m unittest discover -s tests -p 'test_*.py' -v",
     "demo": "python3 tests/run_demo.py",
-    "check": "node --check web/app.js && python3 -m py_compile app.py",
+    "check": "node --check web/app.js && python3 -m py_compile app.py live_executor.py",
     "test:browser": "python3 tests/browser_smoke.py"
   },
   "engines": {

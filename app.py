@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
-"""Loopback-only handoff proof. Standard-library server; no live model adapter."""
+"""Loopback-only handoff proof. Standard-library server with optional bounded Codex CLI candidates."""
 from __future__ import annotations
 import argparse
+import sys
+if __name__ == "__main__":
+    sys.modules["app"] = sys.modules[__name__]
 import hashlib
 import json
 import mimetypes
@@ -156,6 +159,9 @@ class Handoff:
             self._save(doc)
             return doc
 
+    def _patch(self, doc):
+        return (self.root / 'patches/todo-persistence.patch').read_bytes()
+
     def _run(self, task_id):
         work = self.data / 'runs' / task_id
         try:
@@ -168,7 +174,7 @@ class Handoff:
                 if source.is_symlink() or digest(data) != sha:
                     raise RuntimeError('Fixture changed after review; create a fresh task')
                 sources[rel] = data
-            patch = (self.root / 'patches/todo-persistence.patch').read_bytes()
+            patch = self._patch(doc)
             if digest(patch) != doc['plan']['patch_sha256']:
                 raise RuntimeError('Patch changed after review; create a fresh task')
             patch_text = patch.decode('utf-8')
@@ -210,7 +216,7 @@ class Handoff:
         except Exception as exc:
             def failed(doc):
                 doc['error'] = str(exc)
-                self._event(doc,'failed',str(exc))
+                self._event(doc,'unknown' if doc['state']=='unknown' else 'failed',str(exc))
             self._update(task_id, failed)
         finally:
             if work.exists():
@@ -271,7 +277,7 @@ class Handler(BaseHTTPRequestHandler):
             self._guard()
             path = urlparse(self.path).path
             if path == '/api/health':
-                self._send(200,{'ok':True,'executor':'reviewed-patch-replay','live_model':False,'rinx_host_integration':False}); return
+                self._send(200,{'ok':True,'executor':'reviewed-patch-replay','live_model':False,'live_available':getattr(self.app,'live_enabled',False),'modes':['fixed','live'] if getattr(self.app,'live_enabled',False) else ['fixed'],'rinx_host_integration':False}); return
             match = re.fullmatch(r'/api/tasks/([a-f0-9]{32})(/evidence)?',path)
             if match:
                 self._send(200,self.app.get(match[1])); return
@@ -317,6 +323,9 @@ class Handler(BaseHTTPRequestHandler):
             if path == '/api/tasks':
                 doc,created=self.app.create(body,key)
                 self._send(201 if created else 200,doc);return
+            match=re.fullmatch(r'/api/tasks/([a-f0-9]{32})/cancel',path)
+            if match and hasattr(self.app, 'cancel'):
+                self._send(200,self.app.cancel(match[1],body,key));return
             match=re.fullmatch(r'/api/tasks/([a-f0-9]{32})/decision',path)
             if match:
                 doc,changed=self.app.decide(match[1],body,key)
@@ -327,19 +336,21 @@ class Handler(BaseHTTPRequestHandler):
         except Exception:
             self._error(Problem(500,'internal_error','Unexpected server failure; inspect local server logs'))
 
-def make_server(port=8765, data_dir=None, root=ROOT):
+def make_server(port=8765, data_dir=None, root=ROOT, live_enabled=False):
     server=ThreadingHTTPServer(('127.0.0.1',port),Handler)
-    server.app=Handoff(root,data_dir)
+    from live_executor import LiveHandoff
+    server.app=LiveHandoff(root,data_dir,live_enabled=live_enabled)
     return server
 
 if __name__ == '__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--port',type=int,default=8765)
     parser.add_argument('--data-dir',type=Path)
+    parser.add_argument('--enable-live',action='store_true',help='Allow explicit live tasks using existing Codex login')
     args=parser.parse_args()
-    server=make_server(args.port,args.data_dir)
+    server=make_server(args.port,args.data_dir,live_enabled=args.enable_live)
     print(f'Handoff Proof running at http://127.0.0.1:{server.server_address[1]}',flush=True)
-    print('Loopback only. Reviewed fixture patch replay; no live model or Rinx host bridge.',flush=True)
+    print('Loopback only. Fixed replay by default; live Codex is opt-in. No Rinx host bridge.',flush=True)
     try:
         server.serve_forever()
     except KeyboardInterrupt:

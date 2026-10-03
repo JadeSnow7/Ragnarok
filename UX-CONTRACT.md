@@ -1,7 +1,7 @@
 # Handoff UX contract
 
 ## Business context
-Source: the current requested local GOSIM proof, recorded in README.md and implemented by app.py's fixed recipe. No existing application, user repository, account, payment, or remote service is involved. Runtime scope is trusted example code only; README.md owns limitations and lifecycle rules.
+Source: the current requested local GOSIM proof, recorded in README.md and implemented by app.py and live_executor.py. Fixed mode does not contact a remote service. Explicit live mode uses the existing Codex login to send one fixture source and task, within the current user authorization. Runtime scope is trusted example code only; README.md owns limitations and lifecycle rules.
 
 ## Canonical UI Map
 | Capability | Canonical owner | Source of truth | Allowed variants | Verification |
@@ -14,7 +14,7 @@ Source: the current requested local GOSIM proof, recorded in README.md and imple
 No select, calendar, table selection, search, billing, account permissions, or external deletion is present.
 
 ## Flow ledger
-Create task → awaiting approval → read current plan + patch → approve or reject. Approved task → running → passed or failed. Process restart changes running to interrupted. Rejected, failed, interrupted and passed are terminal. A retry needs a new task; idempotent retry of the same HTTP call never reruns execution.
+Fixed create → awaiting approval → read current plan + patch → approve or reject. Approved task → running → passed or failed. Live create → generating → awaiting approval. Cancel → cancelling → cancelled only after confirmed process exit. Restart leaves unknown and blocks the execution slot. Rejected, failed, interrupted and passed are terminal. A retry needs a new task; idempotent retry of the same HTTP call never reruns execution.
 
 Create and decisions stay on the task detail view, deep-linked by ?task=. New task creation is explicit. The server binds approval to revision and digest. Source: app.py Handoff lifecycle, tests/test_runner.py.
 
@@ -28,3 +28,8 @@ Timeouts do not mean execution failed. Preserve idempotency keys and allow retry
 
 ## Locale and accessibility
 Simplified Chinese UI with exact technical command identifiers in English. Native buttons, links, details and forms; keyboard focus visible; no modal, composite widget or native alert/prompt/confirm. One natural scroller and narrow-width reflow. Reduced motion is respected. Target WCAG 2.2 AA; complete browser/assistive-technology compliance is not claimed without running checks.
+
+## Live mode extension (2026-10-03)
+Native radio inputs choose fixed/live; no custom select. Existing render(), notice(), evidence details and inline approval remain canonical owners. Live mode is disabled until health confirms explicit enablement; availability is not proof of a successful model call. Diff, candidate/base/plan hashes and exact commands precede approval. Generation may run before approval, but target application and tests cannot. Model calls and target commands appear separately in evidence. Source: live_executor.py and tests/test_live.py.
+
+Cancellation is an idempotent server request and does not immediately claim exit. Unknown state stays visible with a blocked slot. Terminal failures never use a passed preview. Normal temporary execution approval resolved the initial outer-sandbox socket restriction. Full HTTP tests and the fixed browser workflow passed; the real live review was checked on desktop and 390px with zero target execution. The exact real candidate was subsequently approved by the human, applied once, and passed the unchanged test suite plus browser reload checks; duplicate approval caused no new execution. No new Rinx claims.

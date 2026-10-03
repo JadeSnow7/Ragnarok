@@ -62,6 +62,8 @@ Token mapping: colors.primary→--blue; colors.ink→--ink; colors.muted→--mut
 
 ## Do's and Don'ts
 - Do expose patch, scope, real commands, exit codes, and known limitations
-- Do require an explicit reviewed-plan decision before any execution
+- Do require an explicit reviewed-plan decision before target application or tests
 - Don't imply that directory copying is an OS sandbox or that fixed patch replay is autonomous model execution
 - Don't hide failed or unrun verification behind a green global result
+
+Live mode extends the existing evidence chain with explicit generation, cancellation and unknown states. Native radio controls use the existing semantic tokens; no new visual system. Model execution and fixed replay always carry distinct text labels.

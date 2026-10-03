@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "summary_date": "2026-10-03",
+  "base_commit": "2c2b51ce8c7f1a8bfff667fb9dac9fbc525928ca",
+  "status": "real_codex_candidate_human_approved_applied_once_and_verified",
+  "provenance": "Sanitized summary checked against locally retained raw model, approval, process and browser evidence; raw logs, identities, local task identifiers, machine paths and screenshots are not distributed.",
+  "modes": {
+    "fixed": "Pre-authored patch replay; no runtime model call",
+    "live": "Existing Codex CLI, structured source response, server-derived diff, separate exact-candidate human approval"
+  },
+  "model": {
+    "cli_version": "0.160.0",
+    "successful_task_real_calls": 1,
+    "successful_task_exit_code": 0,
+    "successful_task_tool_actions": 0,
+    "predefined_patch_supplied": false,
+    "inputs": [
+      "narrow Todo persistence objective",
+      "fixture/store.mjs",
+      "source SHA-256",
+      "output JSON schema"
+    ],
+    "model_candidate_patch": "live-candidate.patch",
+    "attempt_history": [
+      {
+        "phase": "outer execution environment app-server initialization denied",
+        "cli_exit_code": 1,
+        "model_response": false
+      },
+      {
+        "phase": "real model response rejected by overly broad startup diagnostic parser",
+        "cli_exit_code": 0,
+        "model_response": true
+      },
+      {
+        "phase": "one retry after narrowly recognizing two startup diagnostics; real candidate accepted",
+        "cli_exit_code": 0,
+        "model_response": true
+      }
+    ],
+    "codex_sandbox": "read-only",
+    "persistent_auth_or_permission_changes": false
+  },
+  "human_approval": {
+    "explicit_approval_before_target_execution": true,
+    "reviewed_revision": 2,
+    "bound_to": [
+      "candidate bytes",
+      "complete fixture baseline manifest",
+      "plan and commands",
+      "revision"
+    ],
+    "base_manifest_sha256": "ec7a7a159fea2e6aeac4dd39b503c9fda905be46dd4669ac6f6ed9fadc3b0ab3",
+    "candidate_patch_sha256": "39b7c0a69542ce51c8751fb0c262a5ead5e04868ce762e1138bd8de03e8d6a4d"
+  },
+  "real_execution": {
+    "target_runs": 1,
+    "changed_files": [
+      "fixture/store.mjs"
+    ],
+    "original_fixture_unchanged": true,
+    "tests_unchanged": true,
+    "actual_diff_matches_approved_candidate": true,
+    "baseline": {
+      "passed": 9,
+      "failed": 1,
+      "exit_code": 1,
+      "expected_failure": "checkbox state survives reload after toggling"
+    },
+    "after_apply": {
+      "passed": 10,
+      "failed": 0,
+      "exit_code": 0
+    },
+    "commands": [
+      {
+        "name": "baseline",
+        "argv": [
+          "node",
+          "--permission",
+          "--allow-fs-read=.",
+          "--test-isolation=none",
+          "--test",
+          "--test-reporter=tap",
+          "fixture/store.test.mjs"
+        ],
+        "exit_code": 1,
+        "exit_confirmed": true
+      },
+      {
+        "name": "patch-check",
+        "argv": [
+          "git",
+          "apply",
+          "--check",
+          "patch.diff"
+        ],
+        "exit_code": 0,
+        "exit_confirmed": true
+      },
+      {
+        "name": "patch-apply",
+        "argv": [
+          "git",
+          "apply",
+          "patch.diff"
+        ],
+        "exit_code": 0,
+        "exit_confirmed": true
+      },
+      {
+        "name": "verification",
+        "argv": [
+          "node",
+          "--permission",
+          "--allow-fs-read=.",
+          "--test-isolation=none",
+          "--test",
+          "--test-reporter=tap",
+          "fixture/store.test.mjs"
+        ],
+        "exit_code": 0,
+        "exit_confirmed": true
+      }
+    ],
+    "approval_replay": {
+      "same_result": true,
+      "additional_target_runs": 0,
+      "additional_model_calls": 0
+    },
+    "fixture_hashes": {
+      "source_before": "5f5fd17fe4f7b05752b8fbcf974e176dcd268101161a20135ac4564ebfc39d76",
+      "source_after": "3c2567f5bf92b846a7eb7d7e2ec822d1337ce29f15ca416d7cc6e37abf6a486a",
+      "unchanged_test": "19281d5f7ccbeed81d5abe2a637bc567134ae02200161245ef6a71b49c034042"
+    }
+  },
+  "verification": {
+    "backend_http_suite": {
+      "passed": 59,
+      "original_checks": 39,
+      "new_checks": 20,
+      "new_check_scope": "Stub-model, real-process fault-injection and CLI-event-parser checks; these are not live-model evidence"
+    },
+    "offline_card_contract": {
+      "passed": 22,
+      "native_rinx_delivery": false
+    },
+    "fixed_http_demo": {
+      "passed_assertions": 8
+    },
+    "fixed_browser": {
+      "passed_assertions": 12,
+      "browser": "Google Chrome on macOS"
+    },
+    "live_review_browser": {
+      "passed_assertions": 7,
+      "target_commands_before_approval": 0
+    },
+    "real_candidate_browser": {
+      "passed_assertions": 9,
+      "original_reload_loses_check": true,
+      "fixed_check_and_uncheck_survive_reload": true,
+      "narrow_viewport_px": 390,
+      "javascript_errors": 0
+    },
+    "syntax_checks": "passed",
+    "ui_static_audit": {
+      "errors": 0,
+      "warnings": 0,
+      "scope": "static only"
+    }
+  },
+  "scope_limits": [
+    "Only the Todo persistence fixture is supported.",
+    "Node permission mode and isolated directories are not a container-grade boundary for arbitrary hostile code.",
+    "Approval endpoint assumes one trusted local human; remote authentication and tamper-proof auditing are not implemented.",
+    "Rinx embedded interaction and Matrix delivery are not validated by this evidence.",
+    "No automatic repair loop or public application deployment is claimed."
+  ],
+  "runtime_source_sha256": {
+    "app.py": "ab717ed17035ef75906b4f6ab792f797457ecdc9bff347135d0abb0945e97919",
+    "live_executor.py": "6e9f3a2a4d8896cc301f5f06ed15b17ab9d896d48d25340846e5bfa5dc53a040",
+    "web/app.js": "0fc79ffe39ed302f56ebdbe7f59b1a16f745cf3d4e5803c12e6cbda264c45f30",
+    "web/index.html": "54e9ef59262ea5efe6396e63e5e213170cc0892ddc11623c810bebb72260e62d",
+    "web/style.css": "da453b7d6d8162fbe4ec15a7f9d0c3556447814c953c2bce9ce2fa490ac54933",
+    "tools/live_probe.py": "8b961052f5213160627ef0290130b8cbbcf80c8a2de1471e9620ff6c6af46f32"
+  }
+}
