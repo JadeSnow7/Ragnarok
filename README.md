@@ -1,5 +1,7 @@
 # Ragnarok / Web Studio Handoff
 
+> **初赛评审入口（2026-10-04）**：请查看 [`live-codex-todo` 分支](https://github.com/JadeSnow7/Ragnarok/tree/live-codex-todo)、固定提交 [`787ee3b4d5069ab64aefe9104966117e2f01cb3d`](https://github.com/JadeSnow7/Ragnarok/tree/787ee3b4d5069ab64aefe9104966117e2f01cb3d) 和 [初赛 Release（演示视频、截图及评委复现须知）](https://github.com/JadeSnow7/Ragnarok/releases/tag/demo-live-codex-2026-10-03)。初赛版本包含受人工批准约束的 Codex CLI 候选生成与验证流程；本页下文保留 main 原固定补丁 demo 的说明。
+
 Ragnarok 是用于 GOSIM 的本地 Web Studio Handoff 原型，证明审批→应用预生成补丁→真实回归→证据留存的有限闭环。它不是实时自主编程 agent。
 
 ## 已跑通的部分
